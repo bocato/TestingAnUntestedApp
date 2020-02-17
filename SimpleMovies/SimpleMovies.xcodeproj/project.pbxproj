@@ -26,6 +26,7 @@
 		E5CC7BE423FA11EA00B14D70 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5CC7BE323FA11EA00B14D70 /* Favorites.storyboard */; };
 		E5CC7BE623FA143A00B14D70 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BE523FA143A00B14D70 /* UIImageExtension.swift */; };
 		E5CC7BE923FA148B00B14D70 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BE823FA148B00B14D70 /* FavoritesManager.swift */; };
+		E5CC7BEF23FA395A00B14D70 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BEE23FA395A00B14D70 /* FavoriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		E5CC7BE323FA11EA00B14D70 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		E5CC7BE523FA143A00B14D70 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		E5CC7BE823FA148B00B14D70 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		E5CC7BEE23FA395A00B14D70 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		E508032F23F9D05B0007C76A /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				E5CC7BED23FA394700B14D70 /* Cells */,
 				E5CC7BE323FA11EA00B14D70 /* Favorites.storyboard */,
 				E508033523F9D0A30007C76A /* FavoritesViewController.swift */,
 			);
@@ -237,6 +240,14 @@
 				E5CC7BE823FA148B00B14D70 /* FavoritesManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		E5CC7BED23FA394700B14D70 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E5CC7BEE23FA395A00B14D70 /* FavoriteTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +358,7 @@
 				E508030823F9CFA10007C76A /* AppDelegate.swift in Sources */,
 				E508030A23F9CFA10007C76A /* SceneDelegate.swift in Sources */,
 				E5CC7BCC23F9E96B00B14D70 /* UIImageViewExtension.swift in Sources */,
+				E5CC7BEF23FA395A00B14D70 /* FavoriteTableViewCell.swift in Sources */,
 				E5CC7BBA23F9D58900B14D70 /* Network.swift in Sources */,
 				E5CC7BBC23F9D66300B14D70 /* Constants.swift in Sources */,
 				E5CC7BD123F9FD0700B14D70 /* SearchResponse.swift in Sources */,

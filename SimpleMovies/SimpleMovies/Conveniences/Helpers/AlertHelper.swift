@@ -10,34 +10,48 @@ import UIKit
 
 enum AlertHelper {
     
-    static func presentAlert(
+    static func presentChoiceAlert(
         from controller: UIViewController,
         title: String? = nil,
         message: String,
-        rightAction: UIAlertAction,
-        completionHandler: (() -> Void)? = nil
+        yesAction: @escaping () -> Void,
+        noAction: (() -> Void)? = nil
     ) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }
+        alert.addAction(
+            .init(
+                title: "Yes",
+                style: .default,
+                handler: { _ in
+                    yesAction()
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            )
+        )
         
-        alert.addAction(cancelAction)
-        alert.addAction(rightAction)
+        alert.addAction(
+            .init(
+                title: "No",
+                style: .default,
+                handler: { _ in
+                    noAction?()
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            )
+        )
         
         DispatchQueue.main.async {
-            controller.present(alert, animated: true, completion: completionHandler)
+            controller.present(alert, animated: true, completion: nil)
         }
         
     }
     
-    static func presentOkAlert(
+    static func presentSimpleAlert(
         from controller: UIViewController,
         title: String? = nil,
-        message: String,
-        completionHandler: (() -> Void)? = nil
+        message: String
     ) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -48,7 +62,7 @@ enum AlertHelper {
         alert.addAction(okAction)
         
         DispatchQueue.main.async {
-            controller.present(alert, animated: true, completion: completionHandler)
+            controller.present(alert, animated: true, completion: nil)
         }
     }
     

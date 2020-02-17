@@ -16,6 +16,10 @@ final class FavoritesManager {
     
     static let shared = FavoritesManager()
     
+    // MARK: - Initialization
+    
+    private init() {}
+    
     // MARK: - Properties
     
     private(set) var items = [Favorite]()
@@ -31,23 +35,32 @@ final class FavoritesManager {
         items = decodedData
     }
     
-    func add(_ favorite: Favorite) {
-        items.append(favorite)
-        syncronize()
+    func isMarkedAsFavorite(_ favorite: Favorite) -> Bool {
+        return items.firstIndex(where: { $0.imdbID == favorite.imdbID } ) != nil
     }
     
-    func remove(_ favorite: Favorite) {
-        guard let index = items.firstIndex(where: { $0.imdbID == favorite.imdbID } ) else { return }
-        items.remove(at: index)
-        UserDefaults.standard.synchronize()
+    @discardableResult
+    func add(_ favorite: Favorite) -> Bool {
+        var newItems = items
+        newItems.append(favorite)
+        return syncronize(with: newItems)
+    }
+    
+    @discardableResult
+    func remove(_ favorite: Favorite) -> Bool {
+        guard let index = items.firstIndex(where: { $0.imdbID == favorite.imdbID } ) else { return false }
+        var newItems = items
+        newItems.remove(at: index)
+        return syncronize(with: newItems)
     }
     
     // MARK: - Private Properties
-    
-    private func syncronize() {
-        guard let encodedData = try? JSONEncoder().encode(items) else { return }
+    private func syncronize(with newItems: [Favorite]) -> Bool {
+        guard let encodedData = try? JSONEncoder().encode(newItems) else { return false }
         UserDefaults.standard.set(encodedData, forKey: Constants.favoritesKey)
         UserDefaults.standard.synchronize()
+        self.items = newItems
+        return true
     }
     
 }

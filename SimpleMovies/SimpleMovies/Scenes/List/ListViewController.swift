@@ -17,19 +17,28 @@ class ListViewController: UIViewController {
     
     // MARK: - Properties
     
-    var searchResults = [SearchResponse.Result]()
+    private var searchResults = [SearchResponse.Result]()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     // MARK: - Setup
     
-    func setupTableView() {
-        tableView.delegate = self
+    private func setup() {
+        setupTableView()
+        FavoritesManager.shared.load()
+    }
+    
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.isHidden = true
         tableView.estimatedRowHeight = 200
@@ -44,7 +53,7 @@ class ListViewController: UIViewController {
     
     @IBAction func didTapSearchButton(_ sender: Any) {
         guard let text = searchTextField.text, !text.isEmpty else {
-            AlertHelper.presentOkAlert(
+            AlertHelper.presentSimpleAlert(
                 from: self,
                 message: "Empty search field!"
             )
@@ -80,13 +89,13 @@ class ListViewController: UIViewController {
     private func handleMoviesServiceError(_ error: MoviesServiceError) {
         switch error {
         case let .api(apiError):
-            AlertHelper.presentOkAlert(
+            AlertHelper.presentSimpleAlert(
                 from: self,
                 title: "API Error",
                 message: apiError.error
             )
         default:
-            AlertHelper.presentOkAlert(
+            AlertHelper.presentSimpleAlert(
                 from: self,
                 title: "Error",
                 message: "Something is wrong.\nTry again :)"
@@ -106,18 +115,29 @@ extension ListViewController: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListTableViewCell", for: indexPath) as? ListTableViewCell else { return UITableViewCell() }
         
-        let data = searchResults[indexPath.row]
-        cell.setup(data)
+        let searchResult = searchResults[indexPath.row]
+        let viewData = buildViewData(
+            from: searchResult
+        )
+        
+        cell.setup(
+            with: viewData,
+            onAddFavoriteTapped: { FavoritesManager.shared.add(searchResult) },
+            onRemoveFavoriteTapped: { FavoritesManager.shared.remove(searchResult) }
+        )
         
         return cell
         
     }
     
-}
-extension ListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    private func buildViewData(
+        from searchResult: SearchResponse.Result
+    ) -> ListItemViewData {
+        let isFavorite = FavoritesManager.shared.isMarkedAsFavorite(searchResult)
+        return ListItemViewData(
+            searchResult: searchResult,
+            isFavorite: isFavorite
+        )
     }
     
 }
