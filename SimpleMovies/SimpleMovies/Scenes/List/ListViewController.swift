@@ -15,9 +15,27 @@ class ListViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Dependencies
+    
+    private let favoritesManager: FavoritesManagerProtocol
+    
     // MARK: - Properties
     
     private var searchResults = [SearchResponse.Result]()
+    
+    // MARK: -  Initialization
+    
+    init(favoritesManager: FavoritesManagerProtocol = FavoritesManager.shared) {
+        self.favoritesManager = favoritesManager
+        super.init(
+            nibName: "ListViewController",
+            bundle: Bundle(for: ListViewController.self)
+        )
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     
@@ -35,7 +53,7 @@ class ListViewController: UIViewController {
     
     private func setup() {
         setupTableView()
-        FavoritesManager.shared.load()
+        favoritesManager.load()
     }
     
     private func setupTableView() {
@@ -120,10 +138,11 @@ extension ListViewController: UITableViewDataSource {
             from: searchResult
         )
         
+        let favoritesManager = self.favoritesManager
         cell.setup(
             with: viewData,
-            onAddFavoriteTapped: { FavoritesManager.shared.add(searchResult) },
-            onRemoveFavoriteTapped: { FavoritesManager.shared.remove(searchResult) }
+            onAddFavoriteTapped: { favoritesManager.add(searchResult) },
+            onRemoveFavoriteTapped: { favoritesManager.remove(searchResult) }
         )
         
         return cell
@@ -133,7 +152,7 @@ extension ListViewController: UITableViewDataSource {
     private func buildViewData(
         from searchResult: SearchResponse.Result
     ) -> ListItemViewData {
-        let isFavorite = FavoritesManager.shared.isMarkedAsFavorite(searchResult)
+        let isFavorite = favoritesManager.isMarkedAsFavorite(searchResult)
         return ListItemViewData(
             searchResult: searchResult,
             isFavorite: isFavorite

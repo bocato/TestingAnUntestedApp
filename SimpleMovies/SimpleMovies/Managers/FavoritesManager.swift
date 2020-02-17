@@ -10,7 +10,14 @@ import Foundation
 
 typealias Favorite = SearchResponse.Result
 
-final class FavoritesManager {
+protocol FavoritesManagerProtocol {
+    var items: [Favorite] { get }
+    func load()
+    func isMarkedAsFavorite(_ favorite: Favorite) -> Bool
+    @discardableResult func add(_ favorite: Favorite) -> Bool
+    @discardableResult func remove(_ favorite: Favorite) -> Bool
+}
+final class FavoritesManager: FavoritesManagerProtocol {
     
     // MARK: - Singleton
     
