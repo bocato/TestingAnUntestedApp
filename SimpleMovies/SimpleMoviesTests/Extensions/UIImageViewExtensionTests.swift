@@ -21,6 +21,7 @@ final class UIImageViewExtensionTests: XCTestCase {
         let frame = CGRect(origin: .zero, size: .init(width: 10, height: 10))
         let sut = UIImageView(frame: frame)
         let expectedErrorImage: UIImage? = .noImage
+        XCTAssertNil(sut.image)
         
         // When
         sut.setImageFromURL(

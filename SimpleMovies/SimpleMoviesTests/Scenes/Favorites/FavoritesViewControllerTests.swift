@@ -33,7 +33,7 @@ final class FavoritesViewControllerTests: XCTestCase {
         AlertHelperFake.runYesAction = true
         sut.alertHelper = AlertHelperFake.self
         
-        _ = sut.view // trick to "force" load the view
+        _ = sut.view // trick to force load the view
         sut.viewWillAppear(true)
         
         let tableViewDummy = UITableView()

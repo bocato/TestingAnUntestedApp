@@ -18,6 +18,7 @@ class ListViewController: UIViewController {
     // MARK: - Dependencies
     
     private let favoritesManager: FavoritesManagerProtocol
+    private let moviesService: MoviesServiceProtocol
     
     // MARK: - Properties
     
@@ -25,8 +26,12 @@ class ListViewController: UIViewController {
     
     // MARK: -  Initialization
     
-    init(favoritesManager: FavoritesManagerProtocol = FavoritesManager.shared) {
+    init(
+        favoritesManager: FavoritesManagerProtocol = FavoritesManager.shared,
+        moviesService: MoviesServiceProtocol = MoviesService()
+    ) {
         self.favoritesManager = favoritesManager
+        self.moviesService = moviesService
         super.init(
             nibName: "ListViewController",
             bundle: Bundle(for: ListViewController.self)
@@ -83,10 +88,7 @@ class ListViewController: UIViewController {
     // MARK: - Search Logic
     
     func searchMovieWithTitle(_ title: String) {
-        
-        let service = MoviesService()
-        
-        service.searchMovies(withTitle: title) { [unowned self] result in
+        moviesService.searchMovies(withTitle: title) { [unowned self] result in
             switch result {
             case let .success(moviesFromSearch):
                 self.handleMoviesSearchSuccess(moviesFromSearch)
@@ -94,7 +96,6 @@ class ListViewController: UIViewController {
                 self.handleMoviesServiceError(serviceError)
             }
         }
-        
     }
     
     private func handleMoviesSearchSuccess(_ results: [SearchResponse.Result]) {

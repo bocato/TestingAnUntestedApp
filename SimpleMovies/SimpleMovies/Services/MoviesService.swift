@@ -15,7 +15,13 @@ enum MoviesServiceError: Error {
     case api(OMDBError)
 }
 
-final class MoviesService {
+protocol MoviesServiceProtocol {
+    func searchMovies(
+        withTitle title: String,
+        then: @escaping (Result<[SearchResponse.Result], MoviesServiceError>) -> Void
+    )
+}
+final class MoviesService: MoviesServiceProtocol {
     
     func searchMovies(
         withTitle title: String,
@@ -45,7 +51,8 @@ final class MoviesService {
                 
                 do {
                     let decodedValue = try JSONDecoder().decode(SearchResponse.self, from: data)
-                    then(.success(decodedValue.results))
+                    let movies = decodedValue.results.filter { $0.type == .movie }
+                    then(.success(movies))
                 } catch {
                     then(.failure(.decodingError(error)))
                 }

@@ -30,6 +30,7 @@
 		E5CC7BF523FA408E00B14D70 /* NetworkModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BF423FA408E00B14D70 /* NetworkModels.swift */; };
 		E5CC7BFD23FA461400B14D70 /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BFC23FA461400B14D70 /* ListViewControllerTests.swift */; };
 		E5CC7C0023FA4C7300B14D70 /* FavoritesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7BFF23FA4C7300B14D70 /* FavoritesViewControllerTests.swift */; };
+		E5CC7C2223FB7A6500B14D70 /* FavoritesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CC7C2123FB7A6500B14D70 /* FavoritesManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		E5CC7BF423FA408E00B14D70 /* NetworkModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModels.swift; sourceTree = "<group>"; };
 		E5CC7BFC23FA461400B14D70 /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
 		E5CC7BFF23FA4C7300B14D70 /* FavoritesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerTests.swift; sourceTree = "<group>"; };
+		E5CC7C2123FB7A6500B14D70 /* FavoritesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				E5CC7BF023FA3FED00B14D70 /* Extensions */,
+				E5CC7C2023FB7A4D00B14D70 /* Managers */,
 				E5CC7BF923FA456A00B14D70 /* Scenes */,
 				E508032023F9CFA20007C76A /* Info.plist */,
 			);
@@ -299,6 +302,14 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
+		E5CC7C2023FB7A4D00B14D70 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E5CC7C2123FB7A6500B14D70 /* FavoritesManagerTests.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -428,6 +439,7 @@
 				E5CC7C0023FA4C7300B14D70 /* FavoritesViewControllerTests.swift in Sources */,
 				E5CC7BFD23FA461400B14D70 /* ListViewControllerTests.swift in Sources */,
 				E5CC7BF223FA3FFF00B14D70 /* UIImageViewExtensionTests.swift in Sources */,
+				E5CC7C2223FB7A6500B14D70 /* FavoritesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
