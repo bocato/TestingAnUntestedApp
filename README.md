@@ -1,2 +1,7 @@
-# TestingAnUntestedApp
-Files for "Testing an Untested App" talk
+# TestingAnUntestedApp Talk
+
+- Presentantion code: on the Playground 
+- Example App: branch **master** 
+- LiveCoding: na branch **testes**
+
+
