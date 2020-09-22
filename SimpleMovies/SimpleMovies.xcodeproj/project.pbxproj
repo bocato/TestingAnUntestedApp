@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14873A8025198962003B43DD /* ListViewControllerCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14873A7F25198962003B43DD /* ListViewControllerCopy.swift */; };
 		E508030823F9CFA10007C76A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508030723F9CFA10007C76A /* AppDelegate.swift */; };
 		E508030A23F9CFA10007C76A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508030923F9CFA10007C76A /* SceneDelegate.swift */; };
 		E508031123F9CFA20007C76A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E508031023F9CFA20007C76A /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14873A7F25198962003B43DD /* ListViewControllerCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerCopy.swift; sourceTree = "<group>"; };
 		E508030423F9CFA10007C76A /* SimpleMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E508030723F9CFA10007C76A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E508030923F9CFA10007C76A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				E5CC7BD223F9FFBF00B14D70 /* Cells */,
 				E508033123F9D0950007C76A /* ListViewController.swift */,
+				14873A7F25198962003B43DD /* ListViewControllerCopy.swift */,
 				E508033223F9D0950007C76A /* ListViewController.xib */,
 			);
 			path = List;
@@ -365,6 +368,7 @@
 				E508033723F9D0A30007C76A /* FavoritesViewController.swift in Sources */,
 				E5CC7BC023F9E05400B14D70 /* MoviesService.swift in Sources */,
 				E5CC7BCF23F9EE2100B14D70 /* AlertHelper.swift in Sources */,
+				14873A8025198962003B43DD /* ListViewControllerCopy.swift in Sources */,
 				E508033323F9D0950007C76A /* ListViewController.swift in Sources */,
 				E5CC7BE623FA143A00B14D70 /* UIImageExtension.swift in Sources */,
 			);
